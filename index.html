@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon1.png"/>
+    <title>Muhammad Hamid Abad Portfolio</title>
+    
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FONT AWESOME (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <a href="#hero" class="logo">Muhammad Hamid Abad</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">Hi, I'm Muhammad Hamid Abad</h1>
+                <p class="fade-in">I am a <span class="typing-effect"></span></p>
+                <p class="hero-description fade-in">A passionate Data Science student from FAST-NUCES, Lahore, with a strong interest in building intelligent solutions. I thrive on solving complex problems and turning data into impactful insights.</p>
+                <br>
+                <div class="hero-buttons fade-in">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="My_CV.pdf" target="_blank" class="btn btn-secondary">Download CV</a> <!-- TODO: Make sure your CV is named My_CV.pdf -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="profile.png" alt="A professional photo of Muhammad Hamid Abad"> <!-- TODO: Add your photo as profile.jpg -->
+                    </div>
+                    <div class="about-text">
+                        <h3>Driven by Data, Inspired by AI</h3>
+                        <p>I am currently pursuing a Bachelor of Science in Data Science at the prestigious <a href="https://www.nu.edu.pk/Lhr" target="_blank">FAST-NUCES, Lahore Campus</a>. My academic journey has equipped me with a solid foundation in computer science, statistics, and machine learning.</p>
+                        <p>My core passion lies in the realms of Artificial Intelligence and Data Science. I am fascinated by the power of data to uncover patterns, predict outcomes, and drive decision-making. I'm always eager to learn new technologies and apply them to real-world challenges.</p>
+                        <p>In addition to my academic interests, I enjoy working on side projects that blend creativity with functionality — from web-based tools and automation assistants to encryption software and console-based social apps. These experiences have helped me strengthen my 
+                        problem-solving skills, learn to collaborate effectively, and develop a passion for building meaningful software. I’m committed to continuous learning and excited to contribute to innovative projects that make a difference.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="fade-in">
+            <div class="container">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                    <div class="skill-card"><i class="fa-solid fa-database"></i><span>SQL</span></div>
+                    <div class="skill-card"><i class="fa-brands fa-html5"></i><span>HTML5</span></div>
+                    <div class="skill-card"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span></div>
+                    <div class="skill-card"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                    <div class="skill-card"><i class="fa-solid fa-c"></i><span>C/C++</span></div>
+                    <!-- <div class="skill-card"><i class="fa-solid fa-brain"></i><span>Machine Learning</span></div>
+                    <div class="skill-card"><i class="fa-solid fa-chart-line"></i><span>Data Visualization</span></div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="fade-in">
+            <div class="container">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <!-- TODO: Customize these projects with your own work -->
+                    <div class="project-card">
+                        <img src="SecureText_Logo3.png" alt="Project 1 Screenshot">
+                        <h3>SecureText</h3>
+                        <p>SecureText is a C++ tool with a wxWidgets-based GUI that lets users encrypt or decrypt .txt files
+                             using a key. It supports the Vigenère cipher and Reverse cipher, allowing secure text 
+                             transformation and accurate reversal through the same key.</p>
+                        <div class="project-tags">
+                            <span>C++</span><span>WxWidget</span><span>File Handling</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Hamid4325/SecureText" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <img src="Jarvis.png" alt="Project 2 Screenshot">
+                        <h3>Jarvis Web Assistant</h3>
+                        <p>Jarvis Web Assistant is a Python-based web tool that uses the Mistral API to generate human-like responses,
+                             helping users with daily tasks through a smart and responsive interface. Based on flask it can be accessed directly on web.</p>
+                        <div class="project-tags">
+                            <span>Python</span><span>Flask</span><span>Mistral API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Hamid4325/Jarvis-Web-Assistant" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                            <a href="https://hamid098.pythonanywhere.com/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <img src="OOP.png" alt="Project 3 Screenshot">
+                        <h3>The Social Network</h3>
+                        <p>The Social Network is a C++ console app built to demonstrate OOP concepts, 
+                            simulating a basic Facebook-like platform with users, posts, comments, likes, pages, and activity records. 
+                            It can also perform tasks at runtime.</p>
+                        <div class="project-tags">
+                            <span>C++</span><span>OOP</span><span>File Handling</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Hamid4325/The-Social-Network" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="fade-in">
+            <div class="container">
+                <h2>Achievements & Experience</h2>
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <h3 class="experience-title">Campus Ambassador</h3>
+                        <p class="experience-org">PF-PUCON'25</p>
+                        <p class="experience-desc">Selected as an ambassador to represent and promote Pakistan's premier computing contest at PUCIT. Responsible for outreach and engagement activities.</p>
+                    </div>
+                    <div class="experience-card">
+                        <h3 class="experience-title">Competitive Programming</h3>
+                        <p class="experience-org">Softec Competitive Programming Competition</p>
+                        <p class="experience-desc">Participated and competed against talented programmers, solving complex algorithmic problems under pressure. This honed my problem-solving and C++ skills.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team. Feel free to reach out!</p>
+                <div class="contact-info">
+                    <a href="mailto:hamidabad0987@gmail.com" class="contact-link">hamidabad0987@gmail.com</a> <!-- TODO: Change this to your email -->
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/Hamid4325" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>  <!-- TODO: Add your GitHub link -->
+                    <a href="https://www.linkedin.com/in/hamid-abad" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a> <!-- TODO: Add your LinkedIn link -->
+                    <!-- <a href="#" target="_blank" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a> Optional -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Muhammad Hamid Abad. Crafted with <i class="fa-solid fa-heart"></i> and code.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LIBRARIES -->
+    <!-- Typed.js for the typing effect -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Your custom script -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+/* CSS Variables for easy theme management */
+:root {
+    --bg-color: #0f0f1a;
+    --primary-color: #e94560;
+    --secondary-color: #1a1a2e;
+    --text-color: #e0e0e0;
+    --text-color-darker: #a0a0a0;
+    --border-color: #2a2a3e;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* Global Styles & Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff6b81;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+section {
+    padding: 80px 20px;
+    min-height: 90vh;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Header & Navigation */
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(15, 15, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+#hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    color: var(--text-color-darker);
+    margin-bottom: 20px;
+}
+
+.hero-content .typing-effect {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-size: 1.1rem !important;
+}
+
+/* --- CHANGE 1: Added Flexbox styles for button container --- */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens if needed */
+    gap: 15px; /* Creates space between buttons */
+}
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-block; /* Ensures proper spacing and sizing */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #ff6b81;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    /* --- CHANGE 2: Removed margin-left to rely on gap for spacing --- */
+    /* margin-left: 15px; */ 
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-image {
+    flex-basis: 35%;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 15px;
+    border: 3px solid var(--border-color);
+}
+
+.about-text {
+    flex-basis: 65%;
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 50px;
+    margin-top: 80px;
+}
+
+.skill-card {
+    background-color: var(--secondary-color);
+    padding: 25px 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(184, 22, 49, 0.5);
+}
+
+.skill-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin: 20px;
+}
+
+.skill-card span {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.project-card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(184, 22, 49, 0.4);
+}
+
+.project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    margin: 20px 20px 10px;
+}
+
+.project-card p {
+    font-size: 0.95rem;
+    padding: 0 20px;
+    color: var(--text-color-darker);
+    flex-grow: 1;
+}
+
+.project-tags {
+    padding: 15px 20px;
+}
+
+.project-tags span {
+    background-color: var(--border-color);
+    color: var(--text-color);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.project-links {
+    padding: 0 20px 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.project-links a {
+    font-weight: 500;
+}
+
+.project-links i {
+    margin-right: 5px;
+}
+
+/* Experience Section */
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+.experience-card {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 8px 8px 0;
+    border: 1px solid var(--border-color);
+    border-left-width: 4px;
+}
+.experience-title {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+.experience-org {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.experience-desc {
+    color: var(--text-color-darker);
+}
+
+/* Contact Section */
+#contact {
+    text-align: center;
+}
+
+#contact p {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: var(--text-color-darker);
+}
+
+.contact-link {
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 30px;
+    border-bottom: 2px solid transparent;
+}
+
+.contact-link:hover {
+    border-bottom-color: var(--primary-color);
+}
+
+.social-links a {
+    font-size: 2rem;
+    margin: 0 15px;
+    color: var(--text-color-darker);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color-darker);
+}
+
+footer .fa-heart {
+    color: var(--primary-color);
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        display: none; /* Simple hide for mobile, can be replaced with a hamburger menu */
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- CHANGE 3: Added styles for buttons on mobile --- */
+    .hero-buttons {
+        flex-direction: column; /* Stack the buttons vertically */
+        align-items: center; /* Center them horizontally */
+    }
+
+    .btn {
+        width: 100%; /* Make buttons take up full available width */
+        max-width: 320px; /* Constrain their max width */
+        text-align: center; /* Ensure text inside is centered */
+    }
+}
