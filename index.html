@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Muhammad Hamid Abad – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g-blue:#4285F4;
+  --g-red:#EA4335;
+  --g-yellow:#FBBC04;
+  --g-green:#34A853;
+  --text-primary:#202124;
+  --text-secondary:#5F6368;
+  --text-link:#1a0dab;
+  --border:#dadce0;
+  --bg:#fff;
+  --result-hover:#f8f9fa;
+  --chip-bg:#f1f3f4;
+  --font-sans:'Inter',sans-serif;
+  --font-serif:'Source Serif 4',serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--text-primary);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* ─── INTRO SCREEN ─── */
+#intro{
+  position:fixed;inset:0;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  transition:opacity .6s ease, transform .6s ease;
+}
+#intro.fade-out{opacity:0;pointer-events:none}
+
+.google-logo{
+  display:flex;
+  align-items:center;
+  font-size:clamp(48px,10vw,80px);
+  font-family:var(--font-sans);
+  font-weight:700;
+  letter-spacing:-2px;
+  margin-bottom:32px;
+  opacity:0;
+  transform:translateY(20px);
+  animation:logoIn .6s ease .2s forwards;
+}
+@keyframes logoIn{to{opacity:1;transform:translateY(0)}}
+
+.gl{color:var(--g-blue)}
+.gr{color:var(--g-red)}
+.gy{color:var(--g-yellow)}
+.gg{color:var(--g-green)}
+
+.search-box-wrap{
+  width:min(584px,90vw);
+  position:relative;
+  opacity:0;
+  transform:translateY(10px);
+  animation:boxIn .5s ease .7s forwards;
+}
+@keyframes boxIn{to{opacity:1;transform:translateY(0)}}
+
+.search-box{
+  width:100%;
+  height:48px;
+  border:1px solid var(--border);
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  padding:0 16px;
+  gap:10px;
+  font-size:16px;
+  font-family:var(--font-sans);
+  color:var(--text-primary);
+  background:#fff;
+  box-shadow:0 2px 5px rgba(0,0,0,.08);
+  transition:box-shadow .2s;
+  overflow:hidden;
+}
+.search-box.focused{box-shadow:0 4px 12px rgba(0,0,0,.15)}
+
+.search-icon{color:var(--text-secondary);font-size:18px;flex-shrink:0}
+.fa-magnifying-glass.search-icon{font-size:16px}
+.typed-text{flex:1;font-size:16px;white-space:nowrap;overflow:hidden}
+.cursor{
+  display:inline-block;width:2px;height:18px;
+  background:var(--g-blue);vertical-align:middle;
+  animation:blink .7s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.search-actions{
+  display:flex;gap:12px;margin-top:24px;justify-content:center;
+  opacity:0;
+  animation:boxIn .5s ease 1s forwards;
+}
+.search-btn{
+  background:#f8f9fa;
+  border:1px solid #f8f9fa;
+  border-radius:4px;
+  padding:0 16px;
+  height:36px;
+  font-size:14px;
+  font-family:var(--font-sans);
+  color:var(--text-primary);
+  cursor:pointer;
+  transition:all .15s;
+  white-space:nowrap;
+}
+.search-btn.active{
+  background:var(--g-blue);
+  border-color:var(--g-blue);
+  color:#fff;
+  box-shadow:0 2px 8px rgba(66,133,244,.4);
+}
+.search-btn:hover:not(.active){border-color:var(--border);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+
+/* ─── MAIN PORTFOLIO ─── */
+#portfolio{
+  display:none;
+  min-height:100vh;
+}
+
+/* Top bar */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  padding:8px 0;
+}
+.topbar-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;
+  gap:20px;padding:0 24px;
+}
+.topbar-logo{
+  font-family:var(--font-sans);
+  font-size:24px;font-weight:700;
+  letter-spacing:-1px;flex-shrink:0;
+}
+.topbar-search{
+  flex:1;max-width:660px;
+  height:44px;
+  border:1px solid var(--border);
+  border-radius:24px;
+  display:flex;align-items:center;
+  padding:0 16px;gap:10px;
+  font-size:15px;color:var(--text-secondary);
+  cursor:default;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+}
+.topbar-nav{
+  display:flex;gap:24px;margin-left:auto;
+  flex-shrink:0;
+}
+.topbar-nav a{
+  font-size:13px;color:var(--text-secondary);
+  text-decoration:none;
+  padding:4px 0;
+  border-bottom:3px solid transparent;
+  transition:all .15s;
+}
+.topbar-nav a:hover,.topbar-nav a.active{
+  color:var(--g-blue);
+  border-bottom-color:var(--g-blue);
+}
+
+.theme-toggle{
+  display:inline-flex;align-items:center;gap:8px;
+  height:38px;
+  padding:0 14px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#fff;
+  color:var(--text-primary);
+  font:inherit;
+  cursor:pointer;
+  white-space:nowrap;
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.theme-toggle:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.theme-toggle i{font-size:13px;color:var(--text-secondary)}
+
+/* Result count */
+.result-info{
+  max-width:720px;margin:0 auto;
+  padding:12px 24px 0;
+  font-size:13px;color:var(--text-secondary);
+}
+
+/* ─── Content layout ─── */
+.content-wrap{
+  max-width:1200px;margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,720px) 1fr;
+  gap:40px;
+  padding:16px 24px 60px;
+}
+@media(max-width:900px){
+  .content-wrap{grid-template-columns:1fr;gap:0}
+  .sidebar{display:none}
+  .topbar-nav{display:none}
+}
+
+/* ─── Knowledge Panel (sidebar) ─── */
+.sidebar{padding-top:8px}
+.kp-card{
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  font-size:14px;
+  position:sticky;top:80px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+}
+.kp-profile{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:14px;
+}
+.kp-profile-copy{min-width:0}
+.kp-name{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:2px;
+}
+.kp-title{
+  font-size:14px;
+  color:var(--text-secondary);
+  margin-bottom:10px;
+}
+.kp-avatar{
+  width:88px;height:118px;
+  border-radius:18px;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  border:1px solid var(--border);
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  flex-shrink:0;
+}
+.kp-mini-tags{display:flex;flex-wrap:wrap;gap:6px}
+.kp-mini-tags span{
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:var(--chip-bg);
+  color:var(--text-secondary);
+}
+.kp-desc{
+  font-size:13px;
+  color:var(--text-primary);
+  line-height:1.6;
+  margin-bottom:16px;
+  clear:both;
+}
+.kp-row{
+  display:flex;gap:8px;
+  margin-bottom:8px;
+  font-size:13px;
+  align-items:flex-start;
+}
+.kp-label{
+  color:var(--text-secondary);
+  min-width:60px;
+  flex-shrink:0;
+}
+.kp-value{color:var(--text-primary)}
+.kp-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
+
+.cgpa-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#e8f0fe;color:#1557b0;
+  border-radius:4px;padding:2px 8px;
+  font-size:12px;font-weight:500;
+}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{
+  background:var(--chip-bg);
+  border-radius:16px;
+  padding:4px 12px;
+  font-size:12px;
+  color:var(--text-primary);
+}
+.chip.blue{background:#e8f0fe;color:#1557b0}
+.chip.green{background:#e6f4ea;color:#137333}
+.chip.red{background:#fce8e6;color:#c5221f}
+.chip.yellow{background:#fef7e0;color:#b06000}
+
+/* ─── Search results ─── */
+.section-label{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--text-secondary);
+  margin:20px 0 8px;
+  padding-top:8px;
+  border-top:1px solid var(--border);
+}
+.section-label:first-child{border-top:none;margin-top:8px}
+.section-label svg{flex-shrink:0}
+
+.result{
+  padding:16px;
+  border-radius:8px;
+  margin-bottom:4px;
+  transition:background .15s;
+  cursor:default;
+}
+.result:hover{background:var(--result-hover)}
+
+.result-url{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--text-secondary);
+  margin-bottom:4px;
+}
+.result-favicon{
+  width:16px;height:16px;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:#fff;
+  flex-shrink:0;
+}
+.result-title{
+  font-size:18px;
+  color:var(--text-link);
+  margin-bottom:4px;
+  font-weight:600;
+  line-height:1.3;
+}
+.result-title:hover{text-decoration:underline;cursor:pointer}
+.result-snippet{
+  font-size:14px;
+  color:var(--text-secondary);
+  line-height:1.58;
+}
+.result-snippet b{color:var(--text-primary);font-weight:500}
+
+/* Featured snippet */
+.featured-box{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:16px 20px;
+  margin-bottom:4px;
+  background:#fff;
+}
+.featured-label{
+  font-size:12px;color:var(--text-secondary);
+  margin-bottom:12px;display:flex;align-items:center;gap:4px;
+}
+.featured-title{
+  font-size:16px;font-weight:700;
+  margin-bottom:8px;
+}
+.featured-text{
+  font-size:14px;
+  color:var(--text-secondary);
+  line-height:1.6;
+  font-family:var(--font-serif);
+}
+.skill-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+.skill-card{
+  background:var(--chip-bg);
+  border-radius:6px;
+  padding:8px 12px;
+  font-size:13px;
+}
+.skill-card-title{
+  font-weight:500;font-size:12px;
+  color:var(--text-secondary);
+  margin-bottom:4px;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+/* People also ask */
+.paa-item{
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  margin-bottom:4px;
+}
+.paa-q{
+  padding:14px 16px;
+  font-size:14px;
+  font-weight:500;
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;
+  transition:background .15s;
+}
+.paa-q:hover{background:var(--result-hover)}
+.paa-q .arrow{transition:transform .25s;font-size:18px;color:var(--text-secondary)}
+.paa-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .3s ease;
+  border-top:1px solid var(--border);
+  font-size:14px;color:var(--text-secondary);line-height:1.6;
+}
+.paa-a.open{max-height:400px}
+.paa-a-inner{padding:14px 16px}
+
+/* Project cards */
+.project-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:8px;
+}
+@media(max-width:600px){.project-grid{grid-template-columns:1fr}}
+.project-card{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px;
+  transition:box-shadow .2s;
+}
+.project-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.project-card-header{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:8px;
+}
+.project-dot{
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;
+}
+.project-card-title{font-weight:500;font-size:14px}
+.project-card-text{font-size:13px;color:var(--text-secondary);line-height:1.5}
+.project-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.project-tag{
+  background:var(--chip-bg);border-radius:4px;
+  padding:2px 7px;font-size:11px;color:var(--text-secondary);
+}
+.project-stat{
+  font-size:12px;
+  font-weight:500;
+  color:var(--g-green);
+  margin-top:6px;
+}
+
+.project-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.project-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  padding:0 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--text-primary);
+  font-size:13px;
+  font-weight:500;
+  text-decoration:none;
+  transition:all .15s ease;
+}
+.project-button:hover{
+  text-decoration:none;
+  border-color:var(--g-blue);
+  color:var(--g-blue);
+  box-shadow:0 2px 8px rgba(66,133,244,.12);
+}
+.project-button.primary{
+  background:var(--g-blue);
+  color:#fff;
+  border-color:var(--g-blue);
+}
+.project-button.primary:hover{
+  background:#1a73e8;
+  color:#fff;
+}
+
+/* Timeline */
+.timeline-item{
+  display:flex;gap:16px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+}
+.timeline-item:last-child{border-bottom:none}
+.timeline-dot{
+  width:10px;height:10px;
+  border-radius:50%;
+  background:var(--g-blue);
+  flex-shrink:0;
+  margin-top:5px;
+}
+.timeline-content{flex:1}
+.timeline-title{font-size:14px;font-weight:500;margin-bottom:2px}
+.timeline-sub{font-size:13px;color:var(--text-secondary);margin-bottom:4px}
+.timeline-date{font-size:12px;color:var(--text-secondary);font-style:italic}
+.timeline-text{font-size:13px;color:var(--text-secondary);line-height:1.55;margin-top:4px}
+
+/* Cert cards */
+.cert-row{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;
+}
+.cert-card{
+  display:flex;align-items:center;gap:8px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:8px 12px;
+  font-size:13px;
+}
+.cert-icon{font-size:18px}
+
+/* Contact section */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:8px;
+  margin-top:8px;
+}
+.contact-card{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:12px;
+  text-align:center;
+  text-decoration:none;
+  color:var(--text-primary);
+  transition:all .2s;
+}
+.contact-card:hover{border-color:var(--g-blue);color:var(--g-blue);background:#f8f9ff}
+.contact-card-icon{
+  width:34px;height:34px;
+  margin:0 auto 6px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f8f9fa;
+  color:var(--g-blue);
+  font-size:16px;
+}
+.contact-card-label{font-size:12px;color:var(--text-secondary)}
+
+.cert-icon{
+  width:30px;height:30px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f8f9fa;
+  color:var(--g-blue);
+  font-size:15px;
+  flex-shrink:0;
+}
+
+.inline-icon{
+  width:18px;height:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#f1f3f4;
+  color:var(--text-secondary);
+  font-size:10px;
+  flex-shrink:0;
+}
+
+.utility-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+.utility-button{
+  appearance:none;
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:13px;
+  font-weight:500;
+  background:#fff;
+  color:var(--text-primary);
+  cursor:pointer;
+  text-decoration:none;
+  transition:all .15s ease;
+}
+.utility-button:hover{
+  text-decoration:none;
+  border-color:var(--g-blue);
+  color:var(--g-blue);
+  background:#f8faff;
+}
+.utility-feedback{
+  margin-top:8px;
+  font-size:12px;
+  color:var(--text-secondary);
+  min-height:16px;
+}
+
+/* Stats row */
+.stat-strip{
+  display:flex;gap:16px;flex-wrap:wrap;
+  margin:12px 0 8px;
+}
+.stat-item{
+  background:#f8f9fa;border-radius:6px;
+  padding:8px 14px;text-align:center;
+  min-width:90px;
+}
+.stat-num{font-size:20px;font-weight:700;color:var(--g-blue)}
+.stat-lab{font-size:11px;color:var(--text-secondary);margin-top:1px}
+
+/* Footer */
+.google-footer{
+  border-top:1px solid var(--border);
+  padding:16px 24px;
+  text-align:center;
+  font-size:13px;
+  color:var(--text-secondary);
+  margin-top:20px;
+}
+
+/* Scroll reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.reveal.visible{opacity:1;transform:none}
+
+body.theme-dark{
+  --text-primary:#e8eaed;
+  --text-secondary:#9aa0a6;
+  --text-link:#8ab4f8;
+  --border:#3c4043;
+  --bg:#202124;
+  --result-hover:#2a2b2e;
+  --chip-bg:#2a2b2e;
+}
+body.theme-dark,
+body.theme-dark #intro,
+body.theme-dark .topbar,
+body.theme-dark .featured-box,
+body.theme-dark .result,
+body.theme-dark .kp-card,
+body.theme-dark .contact-card,
+body.theme-dark .cert-card,
+body.theme-dark .skill-card,
+body.theme-dark .paa-item,
+body.theme-dark .project-card,
+body.theme-dark .google-footer,
+body.theme-dark .search-box,
+body.theme-dark .search-btn,
+body.theme-dark .theme-toggle,
+body.theme-dark .utility-button,
+body.theme-dark .project-button,
+body.theme-dark .kp-mini-tags span,
+body.theme-dark .chip,
+body.theme-dark .chips span,
+body.theme-dark .project-tag,
+body.theme-dark .stat-item,
+body.theme-dark .result-favicon,
+body.theme-dark .contact-card-icon,
+body.theme-dark .cert-icon,
+body.theme-dark .inline-icon{
+  background:#202124;
+}
+body.theme-dark #intro{background:#202124}
+body.theme-dark .topbar,
+body.theme-dark .google-footer,
+body.theme-dark .kp-card,
+body.theme-dark .featured-box,
+body.theme-dark .result,
+body.theme-dark .paa-item,
+body.theme-dark .contact-card,
+body.theme-dark .cert-card,
+body.theme-dark .skill-card,
+body.theme-dark .project-card,
+body.theme-dark .search-box,
+body.theme-dark .search-btn,
+body.theme-dark .theme-toggle,
+body.theme-dark .utility-button,
+body.theme-dark .project-button{
+  border-color:var(--border);
+  box-shadow:none;
+}
+body.theme-dark .topbar-search,
+body.theme-dark .result-snippet,
+body.theme-dark .featured-text,
+body.theme-dark .kp-desc,
+body.theme-dark .kp-value,
+body.theme-dark .contact-card-label,
+body.theme-dark .utility-feedback,
+body.theme-dark .search-btn,
+body.theme-dark .search-box,
+body.theme-dark .result-info,
+body.theme-dark .google-footer,
+body.theme-dark .kp-mini-tags span,
+body.theme-dark .kp-title,
+body.theme-dark .result-url,
+body.theme-dark .section-label{
+  color:var(--text-secondary);
+}
+body.theme-dark .topbar-logo,
+body.theme-dark .kp-name,
+body.theme-dark .result-title,
+body.theme-dark .featured-title,
+body.theme-dark .project-card-title,
+body.theme-dark .timeline-title,
+body.theme-dark .contact-card,
+body.theme-dark .cert-card,
+body.theme-dark .theme-toggle,
+body.theme-dark .search-btn,
+body.theme-dark .search-box input,
+body.theme-dark .typed-text,
+body.theme-dark .google-logo,
+body.theme-dark .topbar-search{
+  color:var(--text-primary);
+}
+body.theme-dark .kp-mini-tags span,
+body.theme-dark .chips span,
+body.theme-dark .chip,
+body.theme-dark .project-tag{
+  background:#303134;
+  color:var(--text-secondary);
+}
+body.theme-dark .stat-item{
+  background:#303134;
+  border:1px solid var(--border);
+}
+body.theme-dark .utility-button{
+  background:#303134;
+  color:var(--text-primary);
+}
+body.theme-dark .utility-button:hover,
+body.theme-dark .project-button:hover,
+body.theme-dark .theme-toggle:hover,
+body.theme-dark .contact-card:hover{
+  background:#3c4043;
+  border-color:#5f6368;
+  color:var(--text-primary);
+}
+body.theme-dark .contact-card,
+body.theme-dark .cert-card,
+body.theme-dark .skill-card,
+body.theme-dark .paa-item,
+body.theme-dark .project-card,
+body.theme-dark .featured-box,
+body.theme-dark .result{
+  background:#2a2b2e;
+}
+body.theme-dark .theme-toggle i,
+body.theme-dark .topbar-search i,
+body.theme-dark .search-icon,
+body.theme-dark .contact-card-icon,
+body.theme-dark .cert-icon,
+body.theme-dark .inline-icon,
+body.theme-dark .result-favicon{
+  color:#e8eaed;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ INTRO SCREEN ══ -->
+<div id="intro">
+  <div class="google-logo">
+    <span class="gl">G</span><span class="gr">o</span><span class="gy">o</span><span class="gg">g</span><span class="gl">l</span><span class="gr">e</span>
+  </div>
+  <div class="search-box-wrap">
+    <div class="search-box" id="searchBox">
+      <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+      <span class="typed-text" id="typedText"></span><span class="cursor" id="cursor"></span>
+    </div>
+  </div>
+  <div class="search-actions">
+    <button class="search-btn" id="btnSearch">Google Search</button>
+    <button class="search-btn" id="btnLucky">I'm Feeling Lucky</button>
+  </div>
+</div>
+
+<!-- ══ PORTFOLIO ══ -->
+<div id="portfolio">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-logo">
+        <span class="gl">G</span><span class="gr">o</span><span class="gy">o</span><span class="gg">g</span><span class="gl">l</span><span class="gr">e</span>
+      </div>
+      <div class="topbar-search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        Muhammad Hamid Abad – Data Science Portfolio
+      </div>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+        <span>Dark mode</span>
+      </button>
+      <nav class="topbar-nav">
+        <a href="#about" class="active">All</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- <div class="result-info">Found 1 Person</div> -->
+
+  <div class="content-wrap">
+
+    <!-- ── MAIN RESULTS ── -->
+    <main>
+
+      <!-- Featured Snippet: About -->
+      <div id="about" class="featured-box reveal">
+        <div class="featured-label">
+          <i class="fa-solid fa-star" aria-hidden="true" style="color:var(--g-blue)"></i>
+          Featured · About Muhammad Hamid Abad
+        </div>
+        <div class="featured-title">Muhammad Hamid Abad — Data Science Undergraduate & AI Developer</div>
+        <div class="featured-text">
+          Data Science student at <b>FAST National University, Lahore</b> with a stellar <b>3.80 CGPA</b> and consistent recognition as one of the top 3 students in the department. Skilled in Python, SQL, machine learning, and building data-driven AI applications — from NLP classification systems to RAG-based AI tools. Passionate about turning real-world problems into intelligent solutions.
+        </div>
+        <div class="stat-strip">
+          <div class="stat-item"><div class="stat-num">3.80</div><div class="stat-lab">CGPA</div></div>
+          <div class="stat-item"><div class="stat-num">3×</div><div class="stat-lab">Dean's List</div></div>
+          <div class="stat-item"><div class="stat-num">8+</div><div class="stat-lab">Projects</div></div>
+          <div class="stat-item"><div class="stat-num">425+</div><div class="stat-lab">LeetCode Solved</div></div>
+          <div class="stat-item"><div class="stat-num">Top 3</div><div class="stat-lab">In Department</div></div>
+        </div>
+      </div>
+
+      <!-- Skills Result -->
+      <div class="section-label">
+        <i class="fa-solid fa-signal" aria-hidden="true"></i>
+        Technical Skills
+      </div>
+
+      <div class="result reveal">
+        <div class="result-url">
+          <div class="result-favicon" style="background:var(--g-blue)"><i class="fa-solid fa-signal" aria-hidden="true"></i></div>
+          hamidabad.dev › skills
+        </div>
+        <div class="result-title">Technical Skills & Expertise</div>
+        <div class="result-snippet">Proficient across a broad tech stack from ML pipelines to full-stack web development.</div>
+        <div class="skill-grid" style="margin-top:12px">
+          <div class="skill-card">
+            <div class="skill-card-title">Languages</div>
+            Python · C++ · SQL · JavaScript · C
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-title">AI / ML</div>
+            LangChain · LangGraph · scikit-learn · NLP · RAG
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-title">Web</div>
+            HTML · CSS · WordPress · Flask · Web Automation
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-title">Concepts</div>
+            OOP · Data Analysis · DSA · Predictive Modeling
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects section -->
+      <div id="projects" class="section-label">
+        <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+        Projects
+      </div>
+
+      <div class="result reveal">
+        <div class="result-url">
+          <div class="result-favicon" style="background:#333"><i class="fa-brands fa-github" aria-hidden="true"></i></div>
+          github.com › Hamid4325
+        </div>
+        <div class="result-title">Featured Projects – Muhammad Hamid Abad</div>
+        <div class="result-snippet">A selection of AI, machine learning, and web projects showcasing real-world problem-solving skills.</div>
+        <div class="project-grid">
+          <div class="project-card">
+            <div class="project-card-header">
+              <div class="project-dot" style="background:var(--g-blue)"></div>
+              <div class="project-card-title">HARS – Human Activity Recognition</div>
+            </div>
+            <div class="project-card-text">ML classification system using smartphone sensor data (561 features, 10,000+ samples) to recognize 6 human activities. Applied PCA for dimensionality reduction.</div>
+            <div class="project-stat">97% Neural Network Accuracy</div>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">scikit-learn</span>
+              <span class="project-tag">PCA</span>
+              <span class="project-tag">ML</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-card-header">
+              <div class="project-dot" style="background:var(--g-green)"></div>
+              <div class="project-card-title">Quran Explainer – RAG AI App</div>
+            </div>
+            <div class="project-card-text">RAG system built with LangChain providing accurate contextual Quranic explanations using semantic search and authentic reference retrieval.</div>
+            <div class="project-stat">Live on HuggingFace</div>
+            <div class="project-tags">
+              <span class="project-tag">LangChain</span>
+              <span class="project-tag">RAG</span>
+              <span class="project-tag">NLP</span>
+              <span class="project-tag">Python</span>
+            </div>
+            <div class="project-actions">
+              <a class="project-button primary" href="https://huggingface.co/spaces/Hamid191/quran-explainer" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              <a class="project-button" href="https://github.com/Hamid4325/quran-explainer" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-card-header">
+              <div class="project-dot" style="background:var(--g-red)"></div>
+              <div class="project-card-title">MaslaPortal – AI GovTech</div>
+            </div>
+            <div class="project-card-text">AI-driven complaint management platform for government departments. Used NLP to classify and route complaints. Reached Top 750 of 2800+ teams in National AI Wrapper Competition.</div>
+            <div class="project-stat"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Top 750 / 2800+ teams nationally</div>
+            <div class="project-tags">
+              <span class="project-tag">NLP</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">GovTech</span>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-card-header">
+              <div class="project-dot" style="background:var(--g-yellow)"></div>
+              <div class="project-card-title">EventDhondo – Event Platform</div>
+            </div>
+            <div class="project-card-text">Web-based event finder helping students discover competitions, workshops, and skill-building events through curated opportunities.</div>
+            <div class="project-stat">github.com/Hamid4325/EventDhondo</div>
+            <div class="project-tags">
+              <span class="project-tag">Web</span>
+              <span class="project-tag">HTML/CSS</span>
+              <span class="project-tag">JavaScript</span>
+            </div>
+            <div class="project-actions">
+              <a class="project-button primary" href="https://github.com/Hamid4325/EventDhondo" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-card-header">
+              <div class="project-dot" style="background:#9c27b0"></div>
+              <div class="project-card-title">Jarvis Web Assistant</div>
+            </div>
+            <div class="project-card-text">AI-based web automation assistant built with Python and Flask to automate routine browser tasks and improve productivity.</div>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Flask</span>
+              <span class="project-tag">Automation</span>
+            </div>
+            <div class="project-actions">
+              <a class="project-button primary" href="https://github.com/Hamid4325/Jarvis-Web-Assistant" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="project-button" href="https://hamid098.pythonanywhere.com/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-card-header">
+              <div class="project-dot" style="background:#009688"></div>
+              <div class="project-card-title">SecureText – Encryption Tool</div>
+            </div>
+            <div class="project-card-text">GUI-based encryption application in C++ implementing Vigenère Cipher and Reverse Cipher techniques with a clean interface.</div>
+            <div class="project-tags">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">GUI</span>
+              <span class="project-tag">Cryptography</span>
+            </div>
+            <div class="project-actions">
+              <a class="project-button primary" href="https://github.com/Hamid4325/SecureText" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-card-header">
+              <div class="project-dot" style="background:#455a64"></div>
+              <div class="project-card-title">Social Network Console Application</div>
+            </div>
+            <div class="project-card-text">Facebook-inspired C++ console project that demonstrates object-oriented design, runtime interaction, and structured data handling.</div>
+            <div class="project-tags">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">OOP</span>
+              <span class="project-tag">Console App</span>
+            </div>
+            <div class="project-actions">
+              <a class="project-button primary" href="https://github.com/Hamid4325/The-Social-Network" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- People Also Ask -->
+      <div class="section-label">
+        <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+        People also ask
+      </div>
+
+      <div class="reveal">
+        <div class="paa-item">
+          <div class="paa-q" onclick="togglePAA(this)">
+            What is Muhammad Hamid Abad's educational background?
+            <span class="arrow">▾</span>
+          </div>
+          <div class="paa-a">
+            <div class="paa-a-inner">Currently pursuing a BS in Data Science at FAST National University (FAST-NU), Lahore (2024–Present) with a CGPA of 3.80. He has earned the Dean's List award three times and is consistently ranked among the top 3 students in the Data Science Department. He has also completed Harvard CS50x (Intro to Computer Science) and Harvard CS50P (Python Programming).</div>
+          </div>
+        </div>
+        <div class="paa-item">
+          <div class="paa-q" onclick="togglePAA(this)">
+            What programming competitions has Muhammad Hamid Abad participated in?
+            <span class="arrow">▾</span>
+          </div>
+          <div class="paa-a">
+            <div class="paa-a-inner">As Team Lead of the Coding Crew Team, he has participated in 5+ national and international competitive programming competitions. He also holds 425+ solved problems on LeetCode, demonstrating strong algorithmic problem-solving ability.</div>
+          </div>
+        </div>
+        <div class="paa-item">
+          <div class="paa-q" onclick="togglePAA(this)">
+            What experience does Muhammad Hamid Abad have in AI?
+            <span class="arrow">▾</span>
+          </div>
+          <div class="paa-a">
+            <div class="paa-a-inner">He has built several AI projects including a RAG-based Quran Explainer using LangChain, an AI GovTech complaint system (MaslaPortal) using NLP, and a Human Activity Recognition system achieving 97% accuracy. He is proficient in LangChain, LangGraph, and basic AI tools.</div>
+          </div>
+        </div>
+        <div class="paa-item">
+          <div class="paa-q" onclick="togglePAA(this)">
+            How can I contact Muhammad Hamid Abad?
+            <span class="arrow">▾</span>
+          </div>
+          <div class="paa-a">
+            <div class="paa-a-inner">He can be reached at hamidabad0987@gmail.com. You can also find his work on GitHub (Hamid4325), LinkedIn, and LeetCode. His Quran Explainer project is live on HuggingFace Spaces.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div id="experience" class="section-label">
+        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+        Experience & Education
+      </div>
+
+      <div class="result reveal">
+        <div class="result-url">
+          <div class="result-favicon" style="background:var(--g-blue)"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
+          hamidabad.dev › experience
+        </div>
+        <div class="result-title">Experience – Teaching, Ambassadorship & Internships</div>
+        <div class="result-snippet">A track record of leadership and technical experience across academia, startups, and industry.</div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--g-blue)"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">OOP Lab Teaching Assistant</div>
+            <div class="timeline-sub">FAST-NU, Lahore</div>
+            <div class="timeline-date">Jan 2025 – June 2025</div>
+            <div class="timeline-text">Helps students translate theoretical OOP concepts into practical implementations. Supports grading, feedback, and live lab debugging sessions.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--g-red)"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Campus Ambassador – PUCON-25</div>
+            <div class="timeline-sub">National Computing Conference</div>
+            <div class="timeline-date">2025</div>
+            <div class="timeline-text">Used data analysis to optimize promotion strategies, coordinating student engagement and participation in technical sessions.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--g-green)"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Top Coordinating Ambassador – LoopLab</div>
+            <div class="timeline-sub">Student-Based Startup</div>
+            <div class="timeline-date">2025</div>
+            <div class="timeline-text">Acted as top liaison between LoopLab and the student community, coordinating events and outreach programs.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--g-yellow)"></div>
+          <div class="timeline-content">
+            <div class="timeline-title">Intern + Freelance WordPress Developer</div>
+            <div class="timeline-sub">Power Pack Technologies</div>
+            <div class="timeline-date">2024</div>
+            <div class="timeline-text">Optimized sales funnels and built SEO-responsive WordPress websites. Applied basic data analytics to improve user engagement and performance.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="section-label">
+        <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+        Certifications
+      </div>
+
+      <div class="result reveal">
+        <div class="result-url">
+          <div class="result-favicon" style="background:#a50000"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
+          cs50.harvard.edu / coddy.tech
+        </div>
+        <div class="result-title">Certifications – Harvard CS50 & More</div>
+        <div class="result-snippet">Industry-recognized credentials from globally respected platforms.</div>
+        <div class="cert-row">
+          <div class="cert-card">
+            <div class="cert-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-weight:500;font-size:13px">Harvard CS50x</div>
+              <div style="font-size:12px;color:var(--text-secondary)">Intro to Computer Science</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-weight:500;font-size:13px">Harvard CS50P</div>
+              <div style="font-size:12px;color:var(--text-secondary)">Python Programming</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-weight:500;font-size:13px">Coddy.tech</div>
+              <div style="font-size:12px;color:var(--text-secondary)">Python, SQL, JS & OOP</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="section-label">
+        <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+        Achievements
+      </div>
+
+      <div class="result reveal">
+        <div class="result-url">
+          <div class="result-favicon" style="background:var(--g-yellow)"><i class="fa-solid fa-medal" aria-hidden="true"></i></div>
+          hamidabad.dev › achievements
+        </div>
+        <div class="result-title">Achievements & Recognition</div>
+        <div class="result-snippet">Awards, rankings, and recognition across academics and competitive programming.</div>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px">
+            <span class="inline-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
+            <span><b>Top 3 in Data Science Department</b> — FAST-NU, consistently ranked among the best students across all semesters.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px">
+            <span class="inline-icon"><i class="fa-solid fa-medal" aria-hidden="true"></i></span>
+            <span><b>3× Dean's List</b> — recognized for academic excellence each semester at FAST-NU.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px">
+            <span class="inline-icon"><i class="fa-solid fa-star" aria-hidden="true"></i></span>
+            <span><b>National AI Wrapper Competition</b> — MaslaPortal selected in Top 750 out of 2800+ teams, presented at regional round.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px">
+            <span class="inline-icon"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></span>
+            <span><b>425+ LeetCode problems</b> — strong DSA foundation demonstrated through consistent competitive practice.</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px">
+            <span class="inline-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></span>
+            <span><b>5+ Competitive Programming Competitions</b> — national and international events as Team Lead of Coding Crew.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div id="contact" class="section-label">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        Contact
+      </div>
+
+      <div class="result reveal">
+        <div class="result-url">
+          <div class="result-favicon" style="background:var(--g-blue)"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></div>
+          hamidabad.dev › contact
+        </div>
+        <div class="result-title">Contact Muhammad Hamid Abad</div>
+        <div class="result-snippet">Open to internships, research collaborations, and freelance opportunities in Data Science and AI.</div>
+        <div class="contact-grid">
+          <a href="mailto:hamidabad0987@gmail.com" class="contact-card">
+            <div class="contact-card-icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
+            <div style="font-size:13px;font-weight:500">Email</div>
+            <!-- <div class="contact-card-label">hamidabad0987@gmail.com</div> -->
+          </a>
+          <a href="https://github.com/Hamid4325" target="_blank" class="contact-card">
+            <div class="contact-card-icon"><i class="fa-brands fa-github" aria-hidden="true"></i></div>
+            <div style="font-size:13px;font-weight:500">GitHub</div>
+            <div class="contact-card-label">Hamid4325</div>
+          </a>
+          <a href="https://www.linkedin.com/in/hamidabad" target="_blank" class="contact-card">
+            <div class="contact-card-icon"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></div>
+            <div style="font-size:13px;font-weight:500">LinkedIn</div>
+            <div class="contact-card-label">Muhammad Hamid Abad</div>
+          </a>
+          <a href="https://leetcode.com/hamidabad" target="_blank" class="contact-card">
+            <div class="contact-card-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+            <div style="font-size:13px;font-weight:500">LeetCode</div>
+            <div class="contact-card-label">425+ Problems Solved</div>
+          </a>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ── SIDEBAR: Knowledge Panel ── -->
+    <aside class="sidebar">
+      <div class="kp-card">
+        <div class="kp-profile">
+          <img class="kp-avatar" src="profile.png" alt="Muhammad Hamid Abad">
+          <div class="kp-profile-copy">
+            <div class="kp-name">Muhammad Hamid Abad</div>
+            <div class="kp-title">Data Science Undergraduate · AI Developer</div>
+            <div class="kp-mini-tags">
+              <span>FAST-NU</span>
+              <span>Agentic AI</span>
+              <span>Data Science</span>
+            </div>
+          </div>
+        </div>
+        <div class="kp-desc">
+          BS Data Science student at FAST-NU Lahore with a 3.80 CGPA, specializing in machine learning, NLP, and AI application development.
+        </div>
+        <hr class="kp-divider"/>
+        <div class="kp-row">
+          <span class="kp-label">University</span>
+          <span class="kp-value">FAST-NU, Lahore</span>
+        </div>
+        <div class="kp-row">
+          <span class="kp-label">Degree</span>
+          <span class="kp-value">BS Data Science (2024–Present)</span>
+        </div>
+        <div class="kp-row">
+          <span class="kp-label">Email</span>
+          <span class="kp-value">hamidabad0987@gmail.com</span>
+        </div>
+        <div class="kp-row">
+          <span class="kp-label">Location</span>
+          <span class="kp-value">Lahore, Pakistan</span>
+        </div>
+        <div class="kp-row">
+          <span class="kp-label">Languages</span>
+          <span class="kp-value">English (Fluent) · Urdu (Native)</span>
+        </div>
+        <hr class="kp-divider"/>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;font-weight:500">CORE SKILLS</div>
+        <div class="chip-row">
+          <span class="chip blue">Python</span>
+          <span class="chip blue">SQL</span>
+          <span class="chip blue">C++</span>
+          <span class="chip green">Machine Learning</span>
+          <span class="chip green">LangChain</span>
+          <span class="chip green">RAG / NLP</span>
+          <span class="chip yellow">Web Dev</span>
+          <span class="chip yellow">WordPress</span>
+          <span class="chip red">Data Analysis</span>
+          <span class="chip">LangGraph</span>
+          <span class="chip">Flask</span>
+          <span class="chip">OOP / DSA</span>
+        </div>
+        <hr class="kp-divider"/>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;font-weight:500">SOCIAL</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="mailto:hamidabad0987@gmail.com" style="font-size:13px;color:var(--text-link);text-decoration:none"><i class="fa-solid fa-envelope" aria-hidden="true"></i> hamidabad0987@gmail.com</a>
+          <a href="https://github.com/Hamid4325" target="_blank" style="font-size:13px;color:var(--text-link);text-decoration:none"><i class="fa-brands fa-github" aria-hidden="true"></i> github.com/Hamid4325</a>
+          <a href="https://huggingface.co/spaces/Hamid191/quran-explainer" target="_blank" style="font-size:13px;color:var(--text-link);text-decoration:none"><i class="fa-solid fa-robot" aria-hidden="true"></i> huggingface.co/Hamid191</a>
+        </div>
+        <hr class="kp-divider"/>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:8px;font-weight:500">QUICK ACTIONS</div>
+        <div class="utility-actions">
+          <button type="button" class="utility-button" id="copyEmailBtn" data-email="hamidabad0987@gmail.com">Copy email</button>
+          <a href="Muhammad_Hamid_Abad_CV.pdf" target="_blank" rel="noopener noreferrer" class="utility-button">Open CV</a>
+          <button type="button" class="utility-button" id="backTopBtn">Back to top</button>
+        </div>
+        <div class="utility-feedback" id="utilityFeedback" aria-live="polite"></div>
+      </div>
+    </aside>
+
+  </div><!-- /content-wrap -->
+
+  <div class="google-footer">
+    <span style="color:var(--g-blue);font-family:var(--font-sans);font-weight:700">G</span>
+    <span style="color:var(--g-red);font-family:var(--font-sans);font-weight:700">o</span>
+    <span style="color:var(--g-yellow);font-family:var(--font-sans);font-weight:700">o</span>
+    <span style="color:var(--g-green);font-family:var(--font-sans);font-weight:700">g</span>
+    <span style="color:var(--g-blue);font-family:var(--font-sans);font-weight:700">l</span>
+    <span style="color:var(--g-red);font-family:var(--font-sans);font-weight:700">e</span>
+    &nbsp;·&nbsp; Portfolio of Muhammad Hamid Abad &nbsp;·&nbsp; FAST-NU, Lahore &nbsp;·&nbsp; 2025
+  </div>
+
+</div><!-- /portfolio -->
+
+<script>
+// ── TYPING ANIMATION ──
+const fullText = "Muhammad Hamid Abad";
+const typedEl = document.getElementById("typedText");
+const cursor = document.getElementById("cursor");
+const searchBox = document.getElementById("searchBox");
+const btnSearch = document.getElementById("btnSearch");
+const themeToggle = document.getElementById("themeToggle");
+
+const savedTheme = localStorage.getItem("portfolio-theme");
+const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+function applyTheme(theme) {
+  document.body.classList.toggle("theme-dark", theme === "dark");
+  if (themeToggle) {
+    const icon = themeToggle.querySelector("i");
+    const label = themeToggle.querySelector("span");
+    if (theme === "dark") {
+      icon.className = "fa-solid fa-sun";
+      label.textContent = "Light mode";
+      themeToggle.setAttribute("aria-label", "Switch to light mode");
+    } else {
+      icon.className = "fa-solid fa-moon";
+      label.textContent = "Dark mode";
+      themeToggle.setAttribute("aria-label", "Switch to dark mode");
+    }
+  }
+}
+
+applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+
+let i = 0;
+let typingDone = false;
+
+function typeChar() {
+  if (i < fullText.length) {
+    typedEl.textContent += fullText[i++];
+    setTimeout(typeChar, 65 + Math.random() * 40);
+  } else {
+    typingDone = true;
+    setTimeout(triggerSearch, 500);
+  }
+}
+
+function triggerSearch() {
+  cursor.style.display = "none";
+  searchBox.classList.add("focused");
+  btnSearch.classList.add("active");
+  setTimeout(launchPortfolio, 900);
+}
+
+function launchPortfolio() {
+  const intro = document.getElementById("intro");
+  const portfolio = document.getElementById("portfolio");
+  intro.classList.add("fade-out");
+  setTimeout(() => {
+    intro.style.display = "none";
+    portfolio.style.display = "block";
+    initReveal();
+  }, 650);
+}
+
+setTimeout(typeChar, 1100);
+
+// ── PAA TOGGLE ──
+function togglePAA(el) {
+  const ans = el.nextElementSibling;
+  const arrow = el.querySelector(".arrow");
+  ans.classList.toggle("open");
+  arrow.style.transform = ans.classList.contains("open") ? "rotate(180deg)" : "";
+}
+
+// ── SCROLL REVEAL ──
+function initReveal() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+}
+
+// ── QUICK ACTIONS ──
+const copyEmailBtn = document.getElementById("copyEmailBtn");
+const backTopBtn = document.getElementById("backTopBtn");
+const utilityFeedback = document.getElementById("utilityFeedback");
+
+if (copyEmailBtn && utilityFeedback) {
+  copyEmailBtn.addEventListener("click", async () => {
+    const email = copyEmailBtn.dataset.email;
+    try {
+      await navigator.clipboard.writeText(email);
+      utilityFeedback.textContent = "Email copied to clipboard.";
+    } catch (error) {
+      utilityFeedback.textContent = "Copy not available in this browser.";
+    }
+    window.clearTimeout(window.__utilityFeedbackTimer);
+    window.__utilityFeedbackTimer = window.setTimeout(() => {
+      utilityFeedback.textContent = "";
+    }, 1800);
+  });
+}
+
+if (backTopBtn) {
+  backTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const nextTheme = document.body.classList.contains("theme-dark") ? "light" : "dark";
+    localStorage.setItem("portfolio-theme", nextTheme);
+    applyTheme(nextTheme);
+  });
+}
+
+// ── NAV ACTIVE ──
+document.querySelectorAll(".topbar-nav a").forEach(link => {
+  link.addEventListener("click", e => {
+    document.querySelectorAll(".topbar-nav a").forEach(l => l.classList.remove("active"));
+    e.currentTarget.classList.add("active");
+  });
+});
+</script>
+</body>
+</html>
